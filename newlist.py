@@ -1,15 +1,23 @@
+import requests
 
+# URL of the website to fetch data from
+url = 'https://jsonplaceholder.typicode.com/posts'
 
+# Send a GET request to the URL
+response = requests.get(url)
 
-
-# 나는 숫자로 이루어진 리스트를 만들려고 해
-my_list = [1, 2, 3, 4, 5]
-
-my_list.append(6)
-
-result = []
-data = "1212"
-result.append(data)    
-
-
-print(my_list)
+# Check if the request was successful
+if response.status_code == 200:
+    data = response.json()
+    
+    # Create an empty list
+    data_list = []
+    
+    # Append each value to the list
+    for item in data:
+        data_list.append(item)
+    
+    # Print the list
+    print(data_list)
+else:
+    print(f"Failed to retrieve data. Status code: {response.status_code}")
